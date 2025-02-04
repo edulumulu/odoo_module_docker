@@ -1,0 +1,19 @@
+<odoo>
+    <record id="view_partner_form_inherit_training" model="ir.ui.view">
+        <field name="name">res.partner.training.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+           <notebook position="inside">
+                <page string="Work training">
+                    <group>
+                        <field name="is_trainer"/>
+                        <field name="trainer_speciality" invisible="0" />
+                    </group>
+                </page>
+            </notebook>
+        
+        </field>
+    </record>
+
+</odoo>

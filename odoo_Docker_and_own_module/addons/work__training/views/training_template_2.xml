@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <template id="training_report_template_2">
+        <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.external_layout">
+                <!-- Título del informe -->
+                <div style="font-size: 20px; text-align: center; font-weight: bold; margin-bottom: 20px;">
+                    Informe de capacitación de <t t-esc="o.name"/>
+                </div>
+                <!-- Subtítulo del informe -->
+                <div style="font-size: 14px; font-weight: bold; margin-bottom: 20px;">Cursos y sesiones:</div>
+                <!-- Contenedor principal -->
+                <div style="font-size: 12px; margin-bottom: 20px;">
+                    <!-- Iterar sobre cada curso -->
+                    <t t-foreach="o.training_courses_ids" t-as="course">
+                        
+                        <div style="width: 100%; margin-bottom: 20px;">
+                            <!-- Div para Información del Curso (izquierda) -->
+                            <div style="width: 48%; float: left; border: 1px solid black; padding: 10px; box-sizing: border-box;">
+                                <h3 style="margin: 0; font-size: 14px;">Información del Curso</h3>
+                                <p><strong>Curso:</strong> <t t-esc="course.name"/></p>
+                                <p><strong>Responsable:</strong> <t t-esc="course.trainer_id.name"/></p>
+                                <p><strong>Descripción:</strong> <t t-esc="course.description"/></p>
+                                <p><strong>Nº de sesiones totales:</strong> <t t-esc="course.sessions"/></p>
+                            </div>
+
+                            <!-- Div para Información de las Sesiones (derecha) -->
+                            <div style="width: 48%; float: right; border: 1px solid black; padding: 10px; box-sizing: border-box;">
+                                <h3 style="margin: 0; font-size: 14px;">Información de las Sesiones</h3>
+                                <t t-foreach="o.training_sessions_ids" t-as="session">
+                                    <t t-if="session.course_id.id == course.id">
+                                        <p style="margin: 0;">
+                                            <strong>Nombre:</strong> <t t-esc="session.name"/>
+                                            <span style="margin-left: 10px;">
+                                                <strong>Formador:</strong> <t t-esc="session.trainer_id.name"/>
+                                            </span>
+                                        </p>
+                                    </t>
+                                </t>
+                            </div>
+
+                            <!-- Limpiar el flotado después de cada curso -->
+                            <div style="clear: both;"></div>
+                        </div>
+                    </t>
+
+                    <!-- Titulo de la tabla -->
+                <div style="font-size: 14px; font-weight: bold; margin-bottom: 20px;">Sesiones de formación superadas: </div>
+
+                    <!-- Tabla con la información de todas las sesiones -->
+                    <div>
+                        <table style="width: 100%; border: 1px solid black; border-collapse: collapse; font-size: 11px;">
+                            <thead>
+                                <tr>
+                                    <th style="border: 1px solid black; text-align: left; padding: 5px;">Curso</th>
+                                    <th style="border: 1px solid black; text-align: left; padding: 5px;">Sesión</th>
+                                    <th style="border: 1px solid black; text-align: left; padding: 5px;">Fecha</th>
+                                    <th style="border: 1px solid black; text-align: left; padding: 5px;">Formador</th>
+                                    <th style="border: 1px solid black; text-align: left; padding: 5px;">Firma</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.training_sessions_ids" t-as="session">
+                                    <tr>
+                                        <td style="border: 1px solid black; padding: 5px;">
+                                            <t t-esc="session.course_id.name"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 5px;">
+                                            <t t-esc="session.name"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 5px;">
+                                            <t t-esc="session.session_date"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 5px;">
+                                            <t t-esc="session.trainer_id.name"/>
+                                        </td>
+                                        <td style="border: 1px solid black; padding: 5px;">
+                                            ____________________________
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </t>
+    </template>
+</odoo>

@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="work__training.list">
+      <field name="name">Work_Training list</field>
+      <field name="model">work__training.work__training</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="work__training.action_window">
+      <field name="name">Work_Training window</field>
+      <field name="res_model">work__training.work__training</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="work__training.action_server">
+      <field name="name">Work_Training server</field>
+      <field name="model_id" ref="model_work__training_work__training"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="Work_Training" id="work__training.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="work__training.menu_1" parent="work__training.menu_root"/>
+    <menuitem name="Menu 2" id="work__training.menu_2" parent="work__training.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="work__training.menu_1_list" parent="work__training.menu_1"
+              action="work__training.action_window"/>
+    <menuitem name="Server to list" id="work__training" parent="work__training.menu_2"
+              action="work__training.action_server"/>
+-->
+  </data>
+</odoo>

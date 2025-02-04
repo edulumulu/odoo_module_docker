@@ -1,0 +1,12 @@
+<odoo>
+
+<record id="report_training_2" model="ir.actions.report">
+    <field name="name">Prueba</field>
+    <field name="model">hr.employee</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">work__training.training_report_template_2</field>
+    <field name="report_file">work__training.training_report_template_2</field>
+    
+</record>
+
+</odoo>

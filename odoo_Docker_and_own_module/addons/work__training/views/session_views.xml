@@ -1,0 +1,88 @@
+<odoo>
+
+    
+    <!-- Vista de formulario para la clase Session -->
+    <record id="view_training_session_form" model="ir.ui.view">
+        <field name="name">training.session.form</field>
+        <field name="model">training.session</field>
+        <field name="arch" type="xml">
+            <form string="Training Session">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="course_id"/>
+                        
+                        <field name="session_date" />
+                        <field name="stop_datetime" readonly="1"/>
+                        <field name="trainer_id"/>
+                        <field name="participant_ids"/>
+                        <field name="location"/>
+                        <field name="state"/>
+                        <field name="duration" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de árbol para la clase Session -->
+    <record id="view_training_session_tree" model="ir.ui.view">
+        <field name="name">training.session.tree</field>
+        <field name="model">training.session</field>
+        <field name="arch" type="xml">
+            <tree string="Training Sessions">
+                <field name="name"/>
+                <field name="course_id"/>
+                <field name="session_date"/>
+                <field name="trainer_id"/>
+                <field name="state"/>
+                <field name="duration"/>
+            </tree>
+        </field>
+    </record>
+
+
+<!-- Acción que muestra las vistas de sesiones en la vista de lista -->
+    <record id="action_training_sessions" model="ir.actions.act_window">
+        <field name="name">Training Sessions</field>
+        <field name="res_model">training.session</field>
+        <field name="view_mode">tree,form,calendar</field>
+        <field name="view_id" ref="view_training_session_tree"/>
+    </record>
+
+    <!-- Menú para acceder a las sesiones de entrenamiento -->
+    <menuitem id="menu_training_sessions" name="Training Sessions" parent="work_training_menu" action="action_training_sessions"/>
+
+<!-- Acción que muestra las vista calendario -->
+    <!--<record id="action_training_sessions_calendar" model="ir.actions.act_window">
+        <field name="name">Calendar</field>
+        <field name="res_model">training.session</field>
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="view_training_session_calendar"/>
+    </record>-->
+
+     <!-- Menú para acceder al calendario de sesiones dentro del menú general -->
+    <!--<menuitem id="menu_training_sessions_calendar_general"
+              name="Calendar"
+              parent="course_menu"
+              action="action_training_sessions_calendar"/>-->
+
+
+    <record id="view_training_session_calendar" model="ir.ui.view">
+        <field name="name">training.session.calendar</field>
+        <field name="model">training.session</field>
+        <field name="arch" type="xml">
+            <calendar string="Training Sessions"
+                      date_start="session_date"
+                      date_stop="stop_datetime"
+                      color="course_id">
+                <field name="name"/>
+                <field name="course_id"/>
+                <field name="trainer_id"/>
+                <field name="location"/>
+            </calendar>
+        </field>
+    </record>
+
+    
+</odoo>

@@ -1,0 +1,52 @@
+<odoo>
+    <!-- Vista heredada para añadir cursos y sesiones en hr.employee -->
+    <record id="view_employee_form_training" model="ir.ui.view">
+        <field name="name">hr.employee.training</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Work Training">
+                    <group>
+                        <group>
+                            <field name="training_courses_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="trainer_id"/>
+                                    <field name="duration"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="training_sessions_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="session_date"/>
+                                    <field name="trainer_id"/>
+                                    <field name="location"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
+
+<!-- Añadir el botón para generar el reporte en la barra de encabezado -->
+           <!-- <header>
+                <button name="%(action_report_sessions_by_worker)d" 
+                    string="Training Sessions Report" 
+                    type="action" 
+                    class="btn-primary"/>
+            </header>-->
+
+            <!-- <footer>
+                <button name="%(work__training.action_report_sessions_by_worker)d" 
+                        string="Training Sessions Report" 
+                        type="action" 
+                        class="btn-primary"/>
+                </footer>-->
